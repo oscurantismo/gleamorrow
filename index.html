@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gleamorrow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="user-info">👤 Mora</div>
+    <div class="top-actions">
+      <span>🌟</span>
+      <span>🔔</span>
+      <span>🔊</span>
+      <div class="coin-balance">40 🟡</div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="page-content">
+    <!-- Default home screen (character + buttons) -->
+    <section id="home-screen">
+      <div class="character"></div>
+      <div class="task-icons">
+        <button class="task-button">🦊</button>
+        <button class="task-button">🌱</button>
+        <button class="task-button">⏳</button>
+      </div>
+      <button class="main-button">Send a kind letter</button>
+      <button class="secondary-button">Start a new reflection</button>
+    </section>
+
+    <!-- To-Do Screen -->
+    <section id="todo-screen" style="display: none;">
+      <h2>Today's Tasks</h2>
+      <ul class="todo-list">
+        <li><input type="checkbox" /> Complete morning reflection 🌞</li>
+        <li><input type="checkbox" /> Water your plant 🌿</li>
+        <li><input type="checkbox" /> Write one kind message 💌</li>
+      </ul>
+    </section>
+
+    <!-- Info Screen -->
+    <section id="info-screen" style="display: none;">
+      <h2>Welcome to Gleamorrow</h2>
+      <p>This is your cosy companion for gentle tasks, emotional tracking, and self-kindness. Complete daily reflections, grow your virtual plant, and exchange kind letters with others.</p>
+      <p>Track your progress through calm tasks and relaxing visuals with your companion Mora.</p>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <footer class="bottom-nav">
+    <button onclick="switchTab('home')">🏠</button>
+    <button onclick="switchTab('todo')">📋</button>
+    <button onclick="switchTab('info')">🧡</button>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      document.getElementById('home-screen').style.display = 'none';
+      document.getElementById('todo-screen').style.display = 'none';
+      document.getElementById('info-screen').style.display = 'none';
+
+      if (tab === 'home') {
+        document.getElementById('home-screen').style.display = 'block';
+      } else if (tab === 'todo') {
+        document.getElementById('todo-screen').style.display = 'block';
+      } else if (tab === 'info') {
+        document.getElementById('info-screen').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
