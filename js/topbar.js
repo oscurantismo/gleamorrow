@@ -115,8 +115,3 @@ export function renderTopBar() {
   top.append(profile, rightGroup);
   document.body.appendChild(top);
 }
-
-  rightGroup.append(bell, sound, coins);
-  top.append(profile, rightGroup);
-  document.body.appendChild(top);
-}
