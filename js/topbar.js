@@ -1,6 +1,4 @@
 // topbar.js
-import { FONT, ZINDEX } from "./styles.js";
-
 export function renderTopBar() {
   const existing = document.getElementById("top-bar");
   if (existing) existing.remove();
@@ -12,85 +10,86 @@ export function renderTopBar() {
     top: "0",
     left: "0",
     right: "0",
-    height: "54px",
+    height: "52px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "8px 12px",
-    zIndex: ZINDEX.topBar || 1000,
-    fontFamily: FONT?.heading || "sans-serif",
-    pointerEvents: "none",
+    padding: "10px 14px",
+    background: "transparent",
+    zIndex: 999,
+    fontFamily: "Ashemore Ext Regular, sans-serif",
   });
 
-  // === Left: Profile Pill ===
+  // === Profile Pill ===
   const profile = document.createElement("div");
-  profile.className = "topbar-pill";
-  profile.style.pointerEvents = "auto";
-  profile.innerHTML = `<span style="font-size: 18px;">👤</span> <span style="font-weight: bold; margin-left: 6px;">Mora</span>`;
+  profile.innerHTML = `
+    <span style="font-size: 18px">👤</span>
+    <span style="margin-left: 6px">Mora</span>
+  `;
   Object.assign(profile.style, {
     display: "flex",
     alignItems: "center",
-    gap: "6px",
-    background: "#3e1f25",
-    color: "#FFB07F",
     padding: "6px 16px",
+    backgroundColor: "#2E0B06",
     borderRadius: "999px",
-    border: "2px solid #622718",
-    boxShadow: "2px 2px 0 #2d120a",
-    fontSize: "16px",
-    cursor: "pointer",
+    color: "#FFB07F",
+    fontSize: "18px",
+    fontWeight: "600",
+    border: "2px solid #561C0D",
+    boxShadow: "2px 2px 0 #561C0D",
   });
 
-  // === Right: Icon Row ===
-  const right = document.createElement("div");
-  Object.assign(right.style, {
+  // === Right Icons Group ===
+  const rightGroup = document.createElement("div");
+  Object.assign(rightGroup.style, {
     display: "flex",
     alignItems: "center",
-    gap: "10px",
-    pointerEvents: "auto",
+    gap: "12px",
   });
 
-  const createCircleIcon = (emoji, label = "") => {
-    const btn = document.createElement("div");
-    btn.title = label;
-    btn.textContent = emoji;
-    Object.assign(btn.style, {
-      width: "36px",
-      height: "36px",
-      background: "#3e1f25",
-      color: "#FFB07F",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "18px",
+  const createCircle = (emoji) => {
+    const el = document.createElement("div");
+    el.textContent = emoji;
+    Object.assign(el.style, {
+      width: "38px",
+      height: "38px",
       borderRadius: "50%",
-      border: "2px solid #622718",
-      boxShadow: "2px 2px 0 #2d120a",
-      cursor: "pointer",
+      background: "#2E0B06",
+      border: "2px solid #561C0D",
+      boxShadow: "2px 2px 0 #561C0D",
+      color: "#FFB07F",
+      fontSize: "18px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     });
-    return btn;
+    return el;
   };
 
-  const bell = createCircleIcon("🔔", "Notifications");
-  const sound = createCircleIcon("🔊", "Sound");
+  const bell = createCircle("🔔");
+  const sound = createCircle("🔊");
 
-  const coinPill = document.createElement("div");
-  coinPill.innerHTML = `<span style="margin-right: 6px;">40</span> 🪙<span style="margin-left: 4px;">➕</span>`;
-  Object.assign(coinPill.style, {
+  // === Coins Pill ===
+  const coins = document.createElement("div");
+  coins.innerHTML = `
+    <span style="margin-right: 6px">40</span>
+    <span style="font-size: 18px">🪙</span>
+    <span style="margin-left: 4px; font-size: 16px;">➕</span>
+  `;
+  Object.assign(coins.style, {
     display: "flex",
     alignItems: "center",
-    background: "#3e1f25",
-    color: "#FFB07F",
-    padding: "6px 12px",
+    padding: "6px 16px",
+    backgroundColor: "#2E0B06",
     borderRadius: "999px",
-    border: "2px solid #622718",
-    boxShadow: "2px 2px 0 #2d120a",
-    fontSize: "16px",
-    cursor: "pointer",
+    color: "#FFB07F",
+    fontSize: "18px",
+    fontWeight: "600",
+    border: "2px solid #561C0D",
+    boxShadow: "2px 2px 0 #561C0D",
   });
 
-  right.append(bell, sound, coinPill);
-
-  top.append(profile, right);
+  rightGroup.append(bell, sound, coins);
+  top.append(profile, rightGroup);
   document.body.appendChild(top);
 }
