@@ -69,17 +69,12 @@ export function renderTopBar() {
   const bell = createCircle("🔔");
   const sound = createCircle("🔊");
 
-  // === Coins Pill ===
+  // === Coins Pill (with overlapping + icon) ===
   const coins = document.createElement("div");
-  coins.innerHTML = `
-    <span style="margin-right: 6px">40</span>
-    <span style="font-size: 18px">🪙</span>
-    <span style="margin-left: 4px; font-size: 16px;">➕</span>
-  `;
+  coins.style.position = "relative";
   Object.assign(coins.style, {
     display: "flex",
     alignItems: "center",
-    padding: "6px 16px",
     backgroundColor: "#2E0B06",
     borderRadius: "999px",
     color: "#FFB07F",
@@ -87,7 +82,39 @@ export function renderTopBar() {
     fontWeight: "600",
     border: "2px solid #561C0D",
     boxShadow: "2px 2px 0 #561C0D",
+    padding: "6px 12px",
+    minWidth: "74px",
+    justifyContent: "center"
   });
+
+  const amount = document.createElement("span");
+  amount.textContent = "40";
+  amount.style.marginRight = "6px";
+
+  const coin = document.createElement("span");
+  coin.textContent = "🪙";
+  coin.style.position = "relative";
+  coin.style.zIndex = "1";
+
+  const plus = document.createElement("span");
+  plus.textContent = "+";
+  Object.assign(plus.style, {
+    position: "absolute",
+    right: "6px",
+    bottom: "6px",
+    fontSize: "12px",
+    color: "#FFB07F",
+    zIndex: "2",
+  });
+
+  coins.appendChild(amount);
+  coins.appendChild(coin);
+  coins.appendChild(plus);
+
+  rightGroup.append(bell, sound, coins);
+  top.append(profile, rightGroup);
+  document.body.appendChild(top);
+}
 
   rightGroup.append(bell, sound, coins);
   top.append(profile, rightGroup);
