@@ -9,11 +9,6 @@ export const COLORS = {
     kindaYellow: "F5C268",
 };
 
-export const FONT = {
-    heading: "'Negrita Pro', sans-serif",
-    body: "'Reem Kufi Fun', sans-serif",
-};
-
 export const BORDER = {
     radius: "28px",
     style: `4px solid ${COLORS.strokeBrown}`,
